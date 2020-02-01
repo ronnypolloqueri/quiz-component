@@ -33,7 +33,44 @@ const QuizStyled = styled.section`
       box-sizing: border-box;
       display: block;
       margin: 0 0 1em 0;
-      padding: 1em 1em 1em 1em;
+      label {
+        box-sizing: border-box;
+        cursor: pointer;
+        display: block;
+        padding: 1em 1em 1em 1em;
+        input[type="radio"] {
+          display: block;
+          float: right;
+          margin: 2px 0 0 0;
+          position: relative;
+          &:after {
+            background-color: ${colors.blue};
+            border-radius: 50%;
+            content: "";
+            display: block;
+            height: 20px;
+            position: absolute;
+            right: 0;
+            top: -2px;
+            width: 20px;
+            z-index: 2;
+          }
+          &:checked {
+            &:before {
+              background-color: ${colors.whiteText};
+              border-radius: 50%;
+              content: "";
+              display: block;
+              height: 10px;
+              position: absolute;
+              right: 5px;
+              top: 3px;
+              width: 10px;
+              z-index: 3;
+            }
+          }
+        }
+      }
     }
   }
   .buttons {

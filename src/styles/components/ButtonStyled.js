@@ -6,7 +6,7 @@ const ButtonStyled = styled.button`
   border: 0;
   border-radius: 30px;
   color: ${colors.whiteText};
-  font-size: 1.5;
+  font-size: 1em;
   font-weight: 600;
   letter-spacing: 1px;
   padding: 1em 3em;
@@ -14,6 +14,11 @@ const ButtonStyled = styled.button`
   transition: background-color 0.3s ease;
   &:hover {
     background-color: ${props => (props.primary ? colors.hoverBlue : "gray")};
+  }
+  &:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+    opacity: 0.8;
   }
 `;
 

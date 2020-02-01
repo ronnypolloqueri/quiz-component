@@ -7,7 +7,12 @@ const Quiz = () => {
   const [index, setIndex] = useState(1);
   const questionsNumber = questions.length;
   const handleNext = () => {
-    setIndex(index + 1);
+    if (index + 1 <= questionsNumber) {
+      document.querySelector(
+        'input[name="alternative"]:checked'
+      ).checked = false;
+      setIndex(index + 1);
+    }
   };
   return (
     <QuizStyled>
@@ -27,9 +32,15 @@ const Quiz = () => {
         ))}
       </ul>
       <div className="buttons">
-        <ButtonStyled primary={true} onClick={handleNext}>
-          Next
-        </ButtonStyled>
+        {index === questionsNumber ? (
+          <ButtonStyled secondary={true} onClick={handleNext}>
+            Finish
+          </ButtonStyled>
+        ) : (
+          <ButtonStyled primary={true} onClick={handleNext}>
+            Next
+          </ButtonStyled>
+        )}
       </div>
     </QuizStyled>
   );

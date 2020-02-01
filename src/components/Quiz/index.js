@@ -5,6 +5,7 @@ import { questions } from "./utils";
 
 const Quiz = () => {
   const [index, setIndex] = useState(1);
+  const [nextStatus, setNextStatus] = useState(true);
   const questionsNumber = questions.length;
   const handleNext = () => {
     if (index + 1 <= questionsNumber) {
@@ -12,7 +13,11 @@ const Quiz = () => {
         'input[name="alternative"]:checked'
       ).checked = false;
       setIndex(index + 1);
+      setNextStatus(true);
     }
+  };
+  const handleNextStatus = () => {
+    setNextStatus(false);
   };
   return (
     <QuizStyled>
@@ -23,7 +28,7 @@ const Quiz = () => {
       <h2 className="questionTitle">{questions[index - 1].question}</h2>
       <ul className="alternatives">
         {questions[index - 1].alternatives.map((alternative, i) => (
-          <li key={i}>
+          <li key={i} onClick={handleNextStatus}>
             <label htmlFor={`op${i}`}>
               {alternative}
               <input type="radio" name="alternative" id={`op${i}`} />
@@ -33,11 +38,19 @@ const Quiz = () => {
       </ul>
       <div className="buttons">
         {index === questionsNumber ? (
-          <ButtonStyled secondary={true} onClick={handleNext}>
+          <ButtonStyled
+            secondary={true}
+            onClick={handleNext}
+            disabled={nextStatus}
+          >
             Finish
           </ButtonStyled>
         ) : (
-          <ButtonStyled primary={true} onClick={handleNext}>
+          <ButtonStyled
+            primary={true}
+            onClick={handleNext}
+            disabled={nextStatus}
+          >
             Next
           </ButtonStyled>
         )}

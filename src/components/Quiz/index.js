@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { navigate } from "@reach/router";
+
+import { AnswersContext } from "../../providers/AnswersProvider";
+
 import QuizStyled from "../../styles/components/QuizStyled";
 import ButtonStyled from "../../styles/components/ButtonStyled";
 import { questions } from "./utils";
@@ -6,18 +10,30 @@ import { questions } from "./utils";
 const Quiz = () => {
   const [index, setIndex] = useState(1);
   const [nextStatus, setNextStatus] = useState(true);
+  const [correctsNumber, setCorrectsNumber] = useState(0);
+  const [alternativeChoosen, setAlternativeChoosen] = useState(null);
+  const { setAnswers } = useContext(AnswersContext);
   const questionsNumber = questions.length;
   const handleNext = () => {
+    if (alternativeChoosen === questions[index - 1].answer) {
+      setCorrectsNumber(correctsNumber + 1);
+    }
     if (index + 1 <= questionsNumber) {
       document.querySelector(
         'input[name="alternative"]:checked'
       ).checked = false;
       setIndex(index + 1);
       setNextStatus(true);
+    } else {
+      setAnswers(correctsNumber);
+      navigate("/results");
     }
   };
   const handleNextStatus = () => {
     setNextStatus(false);
+  };
+  const getAlternativeChoosen = event => {
+    setAlternativeChoosen(event.target.value);
   };
   return (
     <QuizStyled>
@@ -31,7 +47,13 @@ const Quiz = () => {
           <li key={i} onClick={handleNextStatus}>
             <label htmlFor={`op${i}`}>
               {alternative}
-              <input type="radio" name="alternative" id={`op${i}`} />
+              <input
+                type="radio"
+                name="alternative"
+                id={`op${i}`}
+                value={alternative}
+                onClick={getAlternativeChoosen}
+              />
             </label>
           </li>
         ))}

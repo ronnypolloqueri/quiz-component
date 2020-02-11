@@ -1,3 +1,13 @@
+### Tasks
+
+- Axios
+- Portals (Modal Boxes)
+- Animations
+- Code Splitting
+- Deploying Zeit.co
+- Testing with Lighthouse
+- Redux
+
 ### VS Code - Font configuration
 
 Fonts

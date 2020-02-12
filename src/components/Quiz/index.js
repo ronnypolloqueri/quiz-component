@@ -37,6 +37,7 @@ const Quiz = () => {
   };
   return (
     <QuizStyled>
+      <h2>New feature</h2>
       <h3 className="questionNumber">
         Question {index}
         <span>/{questionsNumber}</span>

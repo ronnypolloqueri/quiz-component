@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "parcel build src/index.html --out-dir public/",
+    "now-build": "parcel build src/index.html --out-dir public/",
     "dev": "parcel src/index.html -p 8080"
   },
   "author": "",

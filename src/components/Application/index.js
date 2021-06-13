@@ -17,7 +17,7 @@ const Application = () => {
         <GlobalStyles />
         <Router>
           <Quiz path="/" questions={ questions } />
-          <Results path="/results" />
+          <Results path="/results" questionslength={ questions.length } />
         </Router>
       </Fragment>
     </AnswersProvider>

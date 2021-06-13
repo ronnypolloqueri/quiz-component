@@ -1,11 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { navigate } from "@reach/router";
 
 import { AnswersContext } from "../../providers/AnswersProvider";
 
 import QuizStyled from "../../styles/components/QuizStyled";
 import ButtonStyled from "../../styles/components/ButtonStyled";
-//import { questions } from "./utils";
 
 const Quiz = ({questions}) => {
   const [index, setIndex] = useState(1);
@@ -14,6 +13,14 @@ const Quiz = ({questions}) => {
   const [alternativeChoosen, setAlternativeChoosen] = useState(null);
   const { setAnswers } = useContext(AnswersContext);
   const questionsNumber = questions.length;
+
+  useEffect(() => {
+    if (index > questionsNumber) {
+      setAnswers(correctsNumber);
+      navigate("/results");
+    }
+  });
+
   const handleNext = () => {
     if (alternativeChoosen === questions[index - 1].answer) {
       setCorrectsNumber(correctsNumber + 1);
@@ -22,12 +29,9 @@ const Quiz = ({questions}) => {
       document.querySelector(
         'input[name="alternative"]:checked'
       ).checked = false;
-      setIndex(index + 1);
       setNextStatus(true);
-    } else {
-      setAnswers(correctsNumber);
-      navigate("/results");
     }
+    setIndex(index + 1);
   };
   const handleNextStatus = () => {
     setNextStatus(false);
@@ -35,6 +39,9 @@ const Quiz = ({questions}) => {
   const getAlternativeChoosen = event => {
     setAlternativeChoosen(event.target.value);
   };
+  if (index > questionsNumber) {
+    return (<h1>End</h1>)
+  }
   return (
     <QuizStyled>
       <h2>New feature</h2>

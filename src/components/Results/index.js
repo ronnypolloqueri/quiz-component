@@ -5,13 +5,12 @@ import { AnswersContext } from "../../providers/AnswersProvider";
 
 import ResultsStyled from "../../styles/components/ResultsStyled";
 
-import { questions } from "../Quiz/utils";
 
 // 1 buena 😢
 // 2 buenas 😐
 // 3 o 4 buenas 😁
 
-const Results = () => {
+const Results = ({questionslength}) => {
   const { answers } = useContext(AnswersContext);
   useEffect(() => {
     if (answers === null) {
@@ -23,7 +22,7 @@ const Results = () => {
       <h2>Resultados:</h2>
       <p>
         Obtuviste {answers} buena{answers === 1 ? "" : "s"} de{" "}
-        {questions.length} 😐
+        {questionslength} 😁
       </p>
     </ResultsStyled>
   );

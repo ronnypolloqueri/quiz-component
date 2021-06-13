@@ -21,9 +21,11 @@ export const generateQuestions = (dictionary, numberQuestions) => {
     key = shuffleKeys.pop();
     value = dictionary[key];
     newShuffleKeys = shuffle([... mainShuffleKeys]);
-    let alternatives = newShuffleKeys.slice(0, alternativesQuantity - 1).map(key => dictionary[key])
-    const randomPosition = Math.floor(Math.random() * alternativesQuantity);
-    insertAt(alternatives, randomPosition, value);
+    let alternatives = newShuffleKeys.slice(0, alternativesQuantity ).map(key => dictionary[key])
+    if (!alternatives.includes(value)){
+      const randomPosition = Math.floor(Math.random() * alternativesQuantity);
+      replaceAt(alternatives, randomPosition, value);
+    }
 
     questions.push({
       'question': `Como se dice ${key} en ingles?`,
@@ -34,8 +36,8 @@ export const generateQuestions = (dictionary, numberQuestions) => {
   return questions;
 }
 
-const insertAt = (array, index, ...elementsArray) => {
-  array.splice(index, 0, ...elementsArray);
+const replaceAt = (array, index, ...elementsArray) => {
+  array.splice(index, 1, ...elementsArray);
 }
 
 /*

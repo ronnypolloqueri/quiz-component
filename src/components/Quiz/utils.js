@@ -5,7 +5,18 @@ export const animals = {
   "delfin": "dolphin",
   "foca": "seal",
   "tortuga": "turtle",
-  "mariscos": "shellfish"
+  "mariscos": "shellfish",
+  "pulpo": "octopus",
+  "morsa": "walrus",
+  "calamar": "squid",
+  "estrella de mar": "sea star (startfish)",
+  "caballito de mar": "sea horse",
+  "jellyfish": "medusa",
+  "langosta": "lobster",
+  "tiburon": "shark",
+  "pepino de mar": "sea cucumber",
+  "ballena asesina u orca": "killer whale (orca)",
+  "camaron": "shrimp",
 }
 
 export const generateQuestions = (dictionary, numberQuestions) => {

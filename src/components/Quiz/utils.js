@@ -31,7 +31,6 @@ export const generateQuestions = (dictionary, numberQuestions) => {
       'answer': value
     })
   }
-  console.log('questions', questions);
   return questions;
 }
 

@@ -5,9 +5,9 @@ import { AnswersContext } from "../../providers/AnswersProvider";
 
 import QuizStyled from "../../styles/components/QuizStyled";
 import ButtonStyled from "../../styles/components/ButtonStyled";
-import { questions } from "./utils";
+//import { questions } from "./utils";
 
-const Quiz = () => {
+const Quiz = ({questions}) => {
   const [index, setIndex] = useState(1);
   const [nextStatus, setNextStatus] = useState(true);
   const [correctsNumber, setCorrectsNumber] = useState(0);
